@@ -16,10 +16,15 @@ class SearchBar extends Component { // Declares new class with name 'SearchBar';
   }
 
   render() { // Define render method on the class -- every class must have this
-    // Must return JSX; onChange is a react-specific property; Use this.setState to update state
+    // A controlled field is a form element that's value is set by the state rather than the other way around
     return (
       <div>
-        <input onChange={event => this.setState({ term: event.target.value })} /> 
+        { /* Must return JSX; onChange is a react-specific property; Use this.setState to update state */ }
+        { /* When we tell input that value is provided by this.state.term, we turn the input into a controlled component */ }
+        {/* A controlled component has its value set by state, so its value only changes when its state changes */}
+        <input 
+          value={this.state.term} 
+          onChange={event => this.setState({ term: event.target.value })} /> 
       </div>
     );
   }
