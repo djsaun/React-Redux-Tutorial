@@ -7,9 +7,27 @@ import React, { Component } from 'react';
 
 // Class component - Used when we want a component to have internal record keeping
 class SearchBar extends Component { // Declares new class with name 'SearchBar'; Class has access to functionality that React.Component class has
-  render() { // Define render method on the class -- every class must have this
-    return <input onChange={event => console.log(event.target.value)} />; // Must return JSX; onChange is a react-specific property
+  // Initializes state in a class-based component
+  constructor(props) { // Constructor function is the first and only function called automatically whenever a new instance of a class is created
+    super(props); 
+
+    // Initialize state by creating a new object and assigning it to this.state
+    this.state = { term: '' }; // Object contains properties that we want to record on the state
   }
+
+  render() { // Define render method on the class -- every class must have this
+    // Must return JSX; onChange is a react-specific property; Use this.setState to update state
+    return (
+      <div>
+        <input onChange={event => this.setState({ term: event.target.value })} /> 
+      </div>
+    );
+  }
+
+  // Create event handler
+  // onInputChange(event) { // event object describes the context/information about the event that occurred
+  //   console.log(event.target.value);
+  // }
 }
 
 export default SearchBar;
