@@ -6,7 +6,8 @@ import VideoListItem from './video_list_item';
 // In a class-based component, props are available anywhere, in any defined method, as this.props. Props are available as just "props" in a function-based component
 const VideoList = (props) => {
   const videoItems = props.videos.map((video) => {
-    return <VideoListItem video={video} />
+    // Keys allow React to know which element to rerender on change -- a key is a consistent and unique piece of information for each record
+    return <VideoListItem key={video.etag} video={video} />
   });
 
   return (
