@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Use {video} to assign props.video to video variable
 const VideoListItem = ({video}) => {
   const imageUrl = video.snippet.thumbnails.default.url;
   const videoTitle = video.snippet.title;
