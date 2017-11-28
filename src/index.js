@@ -11,11 +11,18 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] };
+    this.state = { 
+      videos: [],
+      selectedVideo: null 
+    };
 
     // Downwards data flow - only the most parent component in an application should be responsible for fetching data
     YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
-      this.setState({ videos });
+      this.setState({ 
+        videos,
+        // first video is set to selectedVideo
+        selectedVideo: videos[0]
+      });
     });
   }
 
@@ -23,8 +30,12 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]} />
-        <VideoList videos={this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList 
+          // Takes video and defines it on App's state; passing onVideoSelect as property to VideoList
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+          videos={this.state.videos} 
+        />
       </div>
     );
   }

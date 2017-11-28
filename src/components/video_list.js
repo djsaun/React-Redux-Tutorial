@@ -7,7 +7,14 @@ import VideoListItem from './video_list_item';
 const VideoList = (props) => {
   const videoItems = props.videos.map((video) => {
     // Keys allow React to know which element to rerender on change -- a key is a consistent and unique piece of information for each record
-    return <VideoListItem key={video.etag} video={video} />
+    return (
+      <VideoListItem 
+        // Passing prop from App to VideoListItem
+        onVideoSelect={props.onVideoSelect}
+        key={video.etag} 
+        video={video} 
+      />
+    ); 
   });
 
   return (

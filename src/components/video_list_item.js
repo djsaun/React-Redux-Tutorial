@@ -1,12 +1,13 @@
 import React from 'react';
 
 // Use {video} to assign props.video to video variable
-const VideoListItem = ({video}) => {
+const VideoListItem = ({video, onVideoSelect}) => {
   const imageUrl = video.snippet.thumbnails.default.url;
   const videoTitle = video.snippet.title;
 
   return (
-    <li className="list-group-item">
+    // When li element is clicked, call onVideoSelect and pass it the selected video
+    <li onClick={() => onVideoSelect(video)} className="list-group-item">
       <div className="video-list media">
         <div className="media-left">
           <img src={imageUrl} alt="" className="media-object" />
