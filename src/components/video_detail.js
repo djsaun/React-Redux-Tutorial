@@ -1,7 +1,13 @@
 import React from 'react';
 
 // Use functional component since video detail won't have changes to state
+
 const VideoDetail = ({video}) => {
+  // Add check inside component to make sure video has been provided in the props before component renders
+  if (!video) {
+    return <div>Loading... </div>
+  }
+  
   const videoId = video.id.videoId;
   const url = `https://www.youtube.com/embed/${videoId}`;
 
