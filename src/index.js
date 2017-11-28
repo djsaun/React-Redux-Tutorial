@@ -16,8 +16,13 @@ class App extends Component {
       selectedVideo: null 
     };
 
+    this.videoSearch('surfboards');
+  }
+
+  // Takes string and makes new YTSearch
+  videoSearch(term) {
     // Downwards data flow - only the most parent component in an application should be responsible for fetching data
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    YTSearch({key: API_KEY, term}, (videos) => {
       this.setState({ 
         videos,
         // first video is set to selectedVideo
@@ -29,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList 
           // Takes video and defines it on App's state; passing onVideoSelect as property to VideoList

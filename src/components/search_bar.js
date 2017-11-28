@@ -24,15 +24,18 @@ class SearchBar extends Component { // Declares new class with name 'SearchBar';
         {/* A controlled component has its value set by state, so its value only changes when its state changes */}
         <input 
           value={this.state.term} 
-          onChange={event => this.setState({ term: event.target.value })} /> 
+          onChange={event => this.onInputChange(event.target.value)} /> 
       </div>
     );
   }
 
   // Create event handler
-  // onInputChange(event) { // event object describes the context/information about the event that occurred
-  //   console.log(event.target.value);
-  // }
+  onInputChange(term) { // term object describes the context/information about the event that occurred
+    // set state with term
+    this.setState({term});
+    // call the callback that we got from the App with the new term
+    this.props.onSearchTermChange(term);
+  }
 }
 
 export default SearchBar;
